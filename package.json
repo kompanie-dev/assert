@@ -1,0 +1,20 @@
+{
+	"name": "@kompanie/assert",
+	"version": "1.0.0",
+	"license": "MIT",
+	"description": "A dependency-free, buildless assertion library",
+	"main": "index.js",
+	"repository": "github:kompanie-dev/assert",
+	"type": "module",
+	"files": [
+		"/source"
+	],
+	"scripts": {
+		"lint": "eslint .",
+		"test": "npx diener --port=8000 --livereload"
+	},
+	"devDependencies": {
+		"@kompanie/diener": "^1.0.4",
+		"eslint": "^9.21.0"
+	}
+}

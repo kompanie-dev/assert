@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<title>🟰 Assert Tests</title>
+
+<link rel="stylesheet" href="https://unpkg.com/@kompanie/testwerk@1.0.0/source/testwerk.css">
+
+<script type="importmap">
+	{
+		"imports": {
+			"@kompanie/testwerk": "https://unpkg.com/@kompanie/testwerk@1.0.0/index.js"
+		}
+	}
+</script>
+
+<body class="testwerk-body">
+    <div id="testResults"></div>
+
+    <script type="module">
+        import { TestRunnerConsole, TestRunnerHtml } from "@kompanie/testwerk";
+
+        import { AssertEqualityTests } from "./assertEqualityTests.js";
+        import { AssertFailTests } from "./assertFailTests.js";
+        import { AssertInstanceTests } from "./assertInstanceTests.js";
+        import { AssertNanTests } from "./assertNanTests.js";
+        import { AssertNumberTests } from "./assertNumberTests.js";
+        import { AssertRegexTests } from "./assertRegexTests.js";
+        import { AssertThrowsTests } from "./assertThrowsTests.js";
+        import { AssertTypeTests } from "./assertTypeTests.js";
+        import { AssertUndefinedOrNullTests } from "./assertUndefinedOrNullTests.js";
+
+        const testClasses = [AssertEqualityTests, AssertFailTests, AssertInstanceTests, AssertNanTests, AssertNumberTests, AssertRegexTests, AssertThrowsTests, AssertTypeTests, AssertUndefinedOrNullTests];
+        const testResultElement = document.getElementById("testResults");
+        const testRunnerHtml = new TestRunnerHtml(2000);
+
+        testRunnerHtml.run(testResultElement, ...testClasses);
+    </script>
+</body>
