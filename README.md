@@ -1,4 +1,4 @@
-# Assert 🟰
+# Assert 🔍
 
 A dependency-free, buildless assertion library for node.js and the browser.
 
