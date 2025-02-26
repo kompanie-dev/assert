@@ -1,19 +1,19 @@
 import { Assert } from "../index.js";
 
 export class AssertTypeTests {
-    isTypeOf_shouldPass_forCorrectType() {
-        Assert.isTypeOf("hello", "string");
+    typeOf_shouldPass_forCorrectType() {
+        Assert.typeOf("hello", "string");
     }
 
-    isTypeOf_shouldFail_forIncorrectType() {
-        Assert.throws(() => Assert.isTypeOf(123, "string"));
+    typeOf_shouldFail_forIncorrectType() {
+        Assert.throws(() => Assert.typeOf(123, "string"));
     }
 
-    isNotTypeOf_shouldPass_forIncorrectType() {
-        Assert.isNotTypeOf(123, "string");
+    notTypeOf_shouldPass_forIncorrectType() {
+        Assert.notTypeOf(123, "string");
     }
 
-    isNotTypeOf_shouldFail_forCorrectType() {
-        Assert.throws(() => Assert.isNotTypeOf("hello", "string"));
+    notTypeOf_shouldFail_forCorrectType() {
+        Assert.throws(() => Assert.notTypeOf("hello", "string"));
     }
 }

@@ -44,13 +44,13 @@ export class Assert {
 	}
 
 	// Instances
-	static isInstanceOf(actual, type) {
+	static instanceOf(actual, type) {
 		if (!(actual instanceof type)) {
 			throw new AssertionError(`Expected instance of ${type.name}, but got ${actual.name}`);
 		}
 	}
 
-	static isNotInstanceOf(actual, type) {
+	static notInstanceOf(actual, type) {
 		if (actual instanceof type) {
 			throw new AssertionError(`Expected not instance of ${type.name}`);
 		}
@@ -93,13 +93,13 @@ export class Assert {
 	}
 
 	// Type checks
-	static isTypeOf(object, type) {
+	static typeOf(object, type) {
 		if (typeof object !== type) {
 			throw new AssertionError(`Expected type ${type}, but got ${typeof object}`);
 		}
 	}
 
-	static isNotTypeOf(object, type) {
+	static notTypeOf(object, type) {
 		if (typeof object === type) {
 			throw new AssertionError(`Expected not type ${type}`);
 		}
