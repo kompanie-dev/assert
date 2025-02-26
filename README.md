@@ -12,8 +12,57 @@ npm i @kompanie/assert
 
 ## Usage
 
-```js
+The first parameter is usually `actual` while the second parameter is `expected`.
 
+Exceptions to this rule are:
+
+* `Assert.fail()`
+* `Assert.isNaN(actual)`
+* `Assert.isNotNaN(actual)`
+* `Assert.isBetween(actual, min, max)`
+* `Assert.throws(fn)`
+* `Assert.notThrows(fn)`
+* `Assert.isUndefinedOrNull(actual)`
+* `Assert.isNotUndefinedOrNull(actual)`
+
+```js
+// Equality
+Assert.equal(5, 5);
+Assert.notEqual(5, 10);
+
+// Fail
+Assert.fail();
+
+// Instance
+Assert.instanceOf(new Date(), Date);
+Assert.notInstanceOf({}, Date);
+
+// NaN
+Assert.isNaN(NaN);
+Assert.isNotNaN(123);
+
+// Number
+const tolerance = 0.1;
+Assert.approximately(5.01, 5, tolerance);
+Assert.isAbove(10, 5);
+Assert.isBelow(3, 5);
+Assert.isBetween(5, 1, 10);
+
+// Regex
+Assert.match("hello123", /hello\d+/u);
+Assert.notMatch("hello", /world/u);
+
+// Throws
+Assert.throws(() => { throw new Error(); });
+Assert.notThrows(() => {});
+
+// Type
+Assert.typeOf("hello", "string");
+Assert.notTypeOf(123, "string");
+
+// Undefined / Null
+Assert.isUndefinedOrNull(null);
+Assert.isNotUndefinedOrNull(123);
 ```
 
 ## Tests
