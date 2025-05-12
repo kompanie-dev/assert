@@ -73,7 +73,7 @@ export class Assert {
 		}
 
 		return propertyNamesA.every(
-			propertyName => this.checkDeepEquality(objectA[propertyName], objectB[propertyName])
+			propertyName => Assert.#isDeepEqual(objectA[propertyName], objectB[propertyName])
 		);
 	}
 
