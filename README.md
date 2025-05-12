@@ -30,6 +30,10 @@ Exceptions to this rule are:
 Assert.equal(5, 5);
 Assert.notEqual(5, 10);
 
+// Deep Equality
+Assert.deepEqual({a: 5}, {a: 5});
+Assert.notDeepEqual({a: 5}, {a: 10});
+
 // Fail
 Assert.fail();
 
