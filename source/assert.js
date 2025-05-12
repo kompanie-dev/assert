@@ -43,6 +43,40 @@ export class Assert {
 		}
 	}
 
+	// Deep Equal
+	static deepEqual(actual, expected) {
+		if (Assert.#isDeepEqual(actual, expected) === false) {
+			throw new AssertionError(`Expected ${expected} to be deep equal to ${actual}`);
+		}
+	}
+
+	static notDeepEqual(actual, expected) {
+		if (Assert.#isDeepEqual(actual, expected) === true) {
+			throw new AssertionError(`Expected not value not deep equal to ${expected}`);
+		}
+	}
+
+	static #isDeepEqual(objectA, objectB) {
+		if (objectA === objectB) {
+			return true;
+		}
+
+		if (typeof objectA !== "object" || typeof objectB !== "object" || objectA === null || objectB === null) {
+			return false;
+		}
+
+		const propertyNamesA = Object.keys(objectA);
+		const propertyNamesB = Object.keys(objectB);
+
+		if (propertyNamesA.length !== propertyNamesB.length) {
+			return false;
+		}
+
+		return propertyNamesA.every(
+			propertyName => this.checkDeepEquality(objectA[propertyName], objectB[propertyName])
+		);
+	}
+
 	// Instances
 	static instanceOf(actual, type) {
 		if (!(actual instanceof type)) {
