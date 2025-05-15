@@ -77,6 +77,38 @@ export class Assert {
 		);
 	}
 
+	// Include
+	static include(haystack, needle) {
+		if (Array.isArray(haystack)) {
+			if (haystack.includes(needle) === false) {
+				throw new AssertionError(`Expected array "${haystack.toString()}" to include ${needle}`);
+			}
+		}
+		if (typeof haystack === "string") {
+			if (haystack.indexOf(needle) === -1) {
+				throw new AssertionError(`Expected string "${haystack}" to include "${needle}"`);
+			}
+		}
+
+		throw new TypeError(`Unsupported haystack type ${typeof haystack}`);
+	}
+
+	static notInclude(haystack, needle) {
+		if (Array.isArray(haystack)) {
+			if (haystack.includes(needle) === true) {
+				throw new AssertionError(`Expected array "${haystack.toString()}" to not include ${needle}`);
+			}
+		}
+
+		if (typeof haystack === "string") {
+			if (haystack.indexOf(needle) !== -1) {
+				throw new AssertionError(`Expected string "${haystack}" to not include "${needle}"`);
+			}
+		}
+
+		throw new TypeError(`Unsupported haystack type ${typeof haystack}`);
+	}
+
 	// Instances
 	static instanceOf(actual, type) {
 		if (!(actual instanceof type)) {
