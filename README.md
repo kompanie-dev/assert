@@ -37,6 +37,12 @@ Assert.notDeepEqual({a: 5}, {a: 10});
 // Fail
 Assert.fail();
 
+// Includes
+Assert.include("Hello World", "Hell");
+Assert.include([5, 6, 7], 5);
+Assert.notInclude("Hello World", "Foo");
+Assert.notInclude([5, 6, 7], 8);
+
 // Instance
 Assert.instanceOf(new Date(), Date);
 Assert.notInstanceOf({}, Date);
