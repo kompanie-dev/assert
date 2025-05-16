@@ -20,7 +20,9 @@ Exceptions to this rule are:
 * `Assert.isNaN(actual)`
 * `Assert.isNotNaN(actual)`
 * `Assert.isBetween(actual, min, max)`
-* `Assert.throws(fn)`
+* `Assert.fulfills(fn)`
+* `Assert.rejects(fn, expectedErrorType)`
+* `Assert.throws(fn, expectedErrorType)`
 * `Assert.notThrows(fn)`
 * `Assert.isUndefinedOrNull(actual)`
 * `Assert.isNotUndefinedOrNull(actual)`
@@ -58,12 +60,18 @@ Assert.isAbove(10, 5);
 Assert.isBelow(3, 5);
 Assert.isBetween(5, 1, 10);
 
+// Promises
+const expectedPromiseError = Error; // optional
+Assert.fulfills(() => {});
+Assert.rejects(async () => { throw new Error(); }, expectedPromiseError);
+
 // Regex
 Assert.match("hello123", /hello\d+/u);
 Assert.notMatch("hello", /world/u);
 
 // Throws
-Assert.throws(() => { throw new Error(); });
+const expectedErrorType = Error; // optional
+Assert.throws(() => { throw new Error(); }, expectedErrorType);
 Assert.notThrows(() => {});
 
 // Type
