@@ -84,13 +84,14 @@ export class Assert {
 				throw new AssertionError(`Expected array "${haystack.toString()}" to include ${needle}`);
 			}
 		}
-		if (typeof haystack === "string") {
+		else if (typeof haystack === "string") {
 			if (haystack.indexOf(needle) === -1) {
 				throw new AssertionError(`Expected string "${haystack}" to include "${needle}"`);
 			}
 		}
-
+		else {
 		throw new TypeError(`Unsupported haystack type ${typeof haystack}`);
+		}
 	}
 
 	static notInclude(haystack, needle) {
@@ -99,14 +100,14 @@ export class Assert {
 				throw new AssertionError(`Expected array "${haystack.toString()}" to not include ${needle}`);
 			}
 		}
-
-		if (typeof haystack === "string") {
+		else if (typeof haystack === "string") {
 			if (haystack.indexOf(needle) !== -1) {
 				throw new AssertionError(`Expected string "${haystack}" to not include "${needle}"`);
 			}
 		}
-
+		else {
 		throw new TypeError(`Unsupported haystack type ${typeof haystack}`);
+		}
 	}
 
 	// Instances
