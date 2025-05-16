@@ -90,7 +90,7 @@ export class Assert {
 			}
 		}
 		else {
-		throw new TypeError(`Unsupported haystack type ${typeof haystack}`);
+			throw new TypeError(`Unsupported haystack type ${typeof haystack}`);
 		}
 	}
 
@@ -106,7 +106,7 @@ export class Assert {
 			}
 		}
 		else {
-		throw new TypeError(`Unsupported haystack type ${typeof haystack}`);
+			throw new TypeError(`Unsupported haystack type ${typeof haystack}`);
 		}
 	}
 
@@ -159,6 +159,31 @@ export class Assert {
 		}
 	}
 
+	// Promises
+	static async shouldFulfill(fn) {
+		try {
+			await fn();
+		}
+		catch (error) {
+			throw new AssertionError(`Expected promise to fulfill, but it rejected with: ${error}`);
+		}
+	}
+
+	static async shouldReject(fn) {
+		try {
+			await fn();
+		}
+		catch (error) {
+			if (error instanceof AssertionError) {
+				throw error;
+			}
+
+			return;
+		}
+
+		throw new AssertionError(`Expected promise to reject`);
+	}
+
 	// Type checks
 	static typeOf(object, type) {
 		if (typeof object !== type) {
@@ -173,28 +198,24 @@ export class Assert {
 	}
 
 	// Throws
-	static async throws(fn) {
+	static throws(fn) {
 		try {
-			const result = fn();
-
-			if (result instanceof Promise) {
-				await result;
-			}
+			fn();
 		}
-		catch {
+		catch (error) {
+			if (error instanceof AssertionError) {
+				throw error;
+			}
+
 			return;
 		}
 
 		throw new AssertionError("Expected an error, but none was thrown");
 	}
 
-	static async notThrows(fn) {
+	static notThrows(fn) {
 		try {
-			const result = fn();
-
-			if (result instanceof Promise) {
-				await result;
-			}
+			fn();
 		}
 		catch (error) {
 			throw new AssertionError(`Expected no error, but got ${error}`);
