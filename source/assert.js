@@ -159,29 +159,34 @@ export class Assert {
 		}
 	}
 
-	// Promises
-	static async shouldFulfill(fn) {
+	// Rejects
+	static async rejects(fn, expectedErrorType) {
 		try {
 			await fn();
 		}
 		catch (error) {
-			throw new AssertionError(`Expected promise to fulfill, but it rejected with: ${error}`);
-		}
-	}
-
-	static async shouldReject(fn) {
-		try {
-			await fn();
-		}
-		catch (error) {
-			if (error instanceof AssertionError) {
-				throw error;
+			if (expectedErrorType !== undefined && (error instanceof expectedErrorType) === false) {
+				throw new AssertionError(`Expected error to be type of ${expectedErrorType.constructor.name}, but got ${error.constructor.name}`);
 			}
 
 			return;
 		}
 
 		throw new AssertionError(`Expected promise to reject`);
+	}
+
+	static async notRejects(fn, expectedErrorType) {
+		try {
+			await fn();
+		}
+		catch (error) {
+			if (expectedErrorType === undefined) {
+				throw new AssertionError(`Expected promise to fulfill, but it rejected with: ${typeof error}`);
+			}
+			else if (error instanceof expectedErrorType) {
+				throw new AssertionError(`Expected promise to not throw an error of type ${typeof expectedErrorType}`);
+			}
+		}
 	}
 
 	// Type checks
@@ -198,13 +203,13 @@ export class Assert {
 	}
 
 	// Throws
-	static throws(fn) {
+	static throws(fn, expectedErrorType) {
 		try {
 			fn();
 		}
 		catch (error) {
-			if (error instanceof AssertionError) {
-				throw error;
+			if (expectedErrorType !== undefined && (error instanceof expectedErrorType) === false) {
+				throw new AssertionError(`Expected error to be type of ${typeof expectedErrorType}, but got ${typeof error}`);
 			}
 
 			return;
@@ -213,12 +218,17 @@ export class Assert {
 		throw new AssertionError("Expected an error, but none was thrown");
 	}
 
-	static notThrows(fn) {
+	static notThrows(fn, expectedErrorType) {
 		try {
 			fn();
 		}
 		catch (error) {
-			throw new AssertionError(`Expected no error, but got ${error}`);
+			if (expectedErrorType === undefined) {
+				throw new AssertionError(`Expected no error, but got ${typeof error}`);
+			}
+			else if (error instanceof expectedErrorType) {
+				throw new AssertionError(`Expected to not throw an error of type ${typeof expectedErrorType}`);
+			}
 		}
 	}
 

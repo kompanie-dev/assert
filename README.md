@@ -60,19 +60,19 @@ Assert.isAbove(10, 5);
 Assert.isBelow(3, 5);
 Assert.isBetween(5, 1, 10);
 
-// Promises
-const expectedPromiseError = Error; // optional
-Assert.fulfills(() => {});
-Assert.rejects(async () => { throw new Error(); }, expectedPromiseError);
-
 // Regex
 Assert.match("hello123", /hello\d+/u);
 Assert.notMatch("hello", /world/u);
 
+// Rejects
+const expectedPromiseError = Error; // optional
+Assert.rejects(async () => { throw new Error(); }, expectedPromiseError);
+Assert.notRejects(async () => {}, expectedPromiseError);
+
 // Throws
-const expectedErrorType = Error; // optional
+const expectedErrorType = TypeError; // optional
 Assert.throws(() => { throw new Error(); }, expectedErrorType);
-Assert.notThrows(() => {});
+Assert.notThrows(() => {}, expectedErrorType);
 
 // Type
 Assert.typeOf("hello", "string");

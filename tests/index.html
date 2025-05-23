@@ -25,12 +25,13 @@
         import { AssertInstanceTests } from "./assertInstanceTests.js";
         import { AssertNanTests } from "./assertNanTests.js";
         import { AssertNumberTests } from "./assertNumberTests.js";
+        import { AssertRejectsTests } from "./assertRejectsTests.js";
         import { AssertRegexTests } from "./assertRegexTests.js";
         import { AssertThrowsTests } from "./assertThrowsTests.js";
         import { AssertTypeTests } from "./assertTypeTests.js";
         import { AssertUndefinedOrNullTests } from "./assertUndefinedOrNullTests.js";
 
-        const testClasses = [AssertDeepEqualityTests, AssertEqualityTests, AssertFailTests, AssertIncludeTests, AssertInstanceTests, AssertNanTests, AssertNumberTests, AssertRegexTests, AssertThrowsTests, AssertTypeTests, AssertUndefinedOrNullTests];
+        const testClasses = [AssertDeepEqualityTests, AssertEqualityTests, AssertFailTests, AssertIncludeTests, AssertInstanceTests, AssertNanTests, AssertNumberTests, AssertRegexTests, AssertRejectsTests, AssertThrowsTests, AssertTypeTests, AssertUndefinedOrNullTests];
         const testResultElement = document.getElementById("testResults");
         const testRunnerHtml = new TestRunnerHtml(2000);
 
