@@ -20,10 +20,10 @@ Exceptions to this rule are:
 * `Assert.isNaN(actual)`
 * `Assert.isNotNaN(actual)`
 * `Assert.isBetween(actual, min, max)`
-* `Assert.fulfills(fn)`
 * `Assert.rejects(fn, expectedErrorType)`
+* `Assert.notRejects(fn, expectedErrorType)`
 * `Assert.throws(fn, expectedErrorType)`
-* `Assert.notThrows(fn)`
+* `Assert.notThrows(fn, expectedErrorType)`
 * `Assert.isUndefinedOrNull(actual)`
 * `Assert.isNotUndefinedOrNull(actual)`
 
@@ -65,7 +65,7 @@ Assert.match("hello123", /hello\d+/u);
 Assert.notMatch("hello", /world/u);
 
 // Rejects
-const expectedPromiseError = Error; // optional
+const expectedPromiseError = TypeError; // optional
 Assert.rejects(async () => { throw new Error(); }, expectedPromiseError);
 Assert.notRejects(async () => {}, expectedPromiseError);
 
