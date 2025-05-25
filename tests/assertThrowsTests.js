@@ -14,7 +14,7 @@ export class AssertThrowsTests {
 
 	throws_shouldFail_ifFunctionDoesNotThrow() {
 		try {
-			Assert.throws(() => { /* no error */ });
+			Assert.throws(() => { });
 			Assert.fail("Expected assertion to fail, but it passed.");
 		}
         catch (error) {
