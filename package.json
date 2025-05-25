@@ -16,6 +16,6 @@
 	"devDependencies": {
 		"@kompanie/diener": "^1.0.4",
 		"@kompanie/testwerk": "^1.0.0",
-		"eslint": "^9.26.0"
+		"eslint": "^9.27.0"
 	}
 }
